@@ -6,27 +6,39 @@ const start = document.getElementById("startLocation");
 const contGps = document.getElementById("getContinuousLocation");
 const container = document.getElementById("container");
 const motion = document.getElementById("motion");
-const content = document.getElementById("content");
+const orientation = document.getElementById("orientation");
 const state = document.getElementById("status");
+
+let accx, accy, accz = 0.0;
+let orix, oriy, oriz = 0.0;
 
 const handleMotion = (e) => {
     let acc = e.acceleration;
     let accGrav = e.accelerationIncludingGravity;
-    let rotation = e.rotationRate;
-    motion.innerHTML =
-        `
-    x: ${acc.x * 2}<br>
-    y: ${acc.y * 2}<br>
-    z: ${acc.z * 2}<br>
+
+    accx = acc.x;
+    accy = acc.y;
+    accz = acc.z;
+
+    motion.innerHTML = `
+        x: ${Math.floor(accx)}<br>
+        y: ${Math.floor(accy)}<br>
+        z: ${Math.floor(accz)}<br>
     `;
+
+
 };
 
 const handleOrientation = (e) => {
     // content.innerHTML = e;
+    orix = e.alpha;
+    oriy = e.beta;
+    oriz = e.gamma;
+
     content.innerHTML = `
-    x: ${e.alpha}<br>
-    y: ${e.beta}<br>
-    z: ${e.gamma}<br>
+        x: ${Math.floor(orix)}<br>
+        y: ${Math.floor(oriy)}<br>
+        z: ${Math.floor(oriz)}<br>
     `;
 };
 
@@ -34,7 +46,7 @@ const getOrientation = () => {
     DeviceMotionEvent.requestPermission().then((res) => {
         if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
-            // window.addEventListener('devicemotion', handleMotion, true);
+            window.addEventListener('devicemotion', handleMotion);
         }
         // else if (res === 'prompt') {
         //     container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';

@@ -9,14 +9,10 @@ let container: HTMLElement | null = document.getElementById("container");
 let motion: HTMLElement | null = document.getElementById("motion");
 let state: HTMLElement | null = document.getElementById("status");
 
-const url: string = "http://127.0.0.1:5000";
-
-
 const handleMotion = (e: DeviceMotionEvent) => {
     let acc = e.acceleration;
     let accGrav = e.accelerationIncludingGravity;
     let rotation = e.rotationRate;
-
 
     motion.innerHTML = 
     `
@@ -65,9 +61,11 @@ const showLocation = () => {
             `
         }
     })
-
-    
 };
+
+const getGyro = () => {
+
+}
 
 let intervalID:any = 0;
 

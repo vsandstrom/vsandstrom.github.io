@@ -22,13 +22,12 @@ const handleMotion = (e) => {
 };
 
 const handleOrientation = (e) => {
-    content.innerHTML = e;
-    // motion.innerHTML =
-    //     `
-    // x: ${e.alpha}
-    // y: ${e.beta}
-    // z: ${e.gamma}
-    // `;
+    // content.innerHTML = e;
+    content.innerHTML = `
+    x: ${e.alpha}
+    y: ${e.beta}
+    z: ${e.gamma}
+    `;
 };
 
 const getOrientation = () => {

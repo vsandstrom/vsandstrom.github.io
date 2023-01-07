@@ -1,4 +1,4 @@
-"use strict";
+// import * as Tone from 'tone';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 let gps = document.getElementById("getLocation");
 let drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
@@ -40,7 +39,7 @@ const handleOrientation = (e) => {
 const showLocation = () => {
     console.log("hello");
     // navigator.
-    navigator.geolocation.getCurrentPosition((pos) => __awaiter(void 0, void 0, void 0, function* () {
+    navigator.geolocation.getCurrentPosition((pos) => __awaiter(this, void 0, void 0, function* () {
         gps.style.display = "none";
         drone.style.display = "block";
         let time = new Date(pos.timestamp);

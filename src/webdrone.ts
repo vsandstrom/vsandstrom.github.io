@@ -1,4 +1,4 @@
-import * as Tone from 'tone';
+// import * as Tone from 'tone';
 
 let gps: HTMLElement | null = document.getElementById("getLocation");
 let drone: HTMLElement | null = document.getElementById("tone_start");
@@ -34,7 +34,6 @@ const handleOrientation = (e: DeviceOrientationEvent) => {
     z: ${e.gamma}
     `
 }
-
 
 interface Position {
     time: number,

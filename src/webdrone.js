@@ -70,16 +70,8 @@ else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
 if (window.DeviceOrientationEvent) {
-    DeviceOrientationEvent.requestPermission().then((res) => {
-        if (res === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            state.innerHTML = "orientation";
-        }
-        container.innerHTML = 'Fick inte använda deviceorientation';
-    })
-        .catch((error) => {
-        console.log(error);
-    });
+    window.addEventListener('deviceorientation', handleOrientation, true);
+    state.innerHTML = "orientation";
 }
 // else if (window.DeviceMotionEvent) {
 //     state.innerHTML = "motion";

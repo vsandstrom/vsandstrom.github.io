@@ -84,17 +84,8 @@ if ('geolocation' in navigator){
 }
 
 if (window.DeviceOrientationEvent) {
-    (DeviceOrientationEvent as any).requestPermission().then((res: string) => {
-        if (res === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            state.innerHTML = "orientation";
-        }
-        container.innerHTML = 'Fick inte använda deviceorientation';
-
-    })
-    .catch((error:string) => {
-        console.log(error);
-    })
+    window.addEventListener('deviceorientation', handleOrientation, true);
+    state.innerHTML = "orientation";
 
 }
 // else if (window.DeviceMotionEvent) {

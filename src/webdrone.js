@@ -32,7 +32,7 @@ const handleOrientation = (e) => {
 const getOrientation = () => {
     DeviceOrientationEvent.requestPermission().then((res) => {
         if (res.state === 'granted') {
-            window.addEventListener("deviceorientation", handleMotion);
+            window.addEventListener("deviceorientation", handleOrientation);
             // window.addEventListener('devicemotion', handleMotion, true);
         }
         else if (res.state === 'prompt') {

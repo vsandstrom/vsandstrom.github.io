@@ -64,7 +64,7 @@ if ('geolocation' in navigator) {
     navigator.permissions.query({ name: 'geolocation' }).then((res) => {
         if (res.state === 'granted') {
             gps.addEventListener("click", showLocation);
-            window.addEventListener('devicemotion', handleMotion, true);
+            // window.addEventListener('devicemotion', handleMotion, true);
         }
         console.log('Fick inte använda geolocation');
         container.innerHTML = 'Fick inte använda geolocation';

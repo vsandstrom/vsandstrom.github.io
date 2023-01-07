@@ -15,18 +15,18 @@ const handleMotion = (e) => {
     let rotation = e.rotationRate;
     motion.innerHTML =
         `
-    x: ${acc.x * 2}
-    y: ${acc.y * 2}
-    z: ${acc.z * 2}
+    x: ${acc.x * 2}<br>
+    y: ${acc.y * 2}<br>
+    z: ${acc.z * 2}<br>
     `;
 };
 
 const handleOrientation = (e) => {
     // content.innerHTML = e;
     content.innerHTML = `
-    x: ${e.alpha}
-    y: ${e.beta}
-    z: ${e.gamma}
+    x: ${e.alpha}<br>
+    y: ${e.beta}<br>
+    z: ${e.gamma}<br>
     `;
 };
 

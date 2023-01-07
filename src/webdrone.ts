@@ -90,14 +90,13 @@ if ('geolocation' in navigator){
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
 
-if (window.DeviceMotionEvent) {
-    state.innerHTML = "motion";
-    window.addEventListener("devicemotion", handleMotion, false);
-
-} else if (window.DeviceOrientationEvent) {
+if (window.DeviceOrientationEvent) {
     state.innerHTML = "orientation";
-    window.addEventListener('deviceorientation', handleOrientation, false);
+    window.addEventListener('deviceorientation', handleOrientation, true);
 
+} else if (window.DeviceMotionEvent) {
+    state.innerHTML = "motion";
+    window.addEventListener("devicemotion", handleMotion, true);
 
 } else {
     // window.addEventListener('MozOrientation', () => handleMozOrientation());

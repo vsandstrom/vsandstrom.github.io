@@ -59,19 +59,24 @@ let intervalID = 0;
 if ('geolocation' in navigator) {
     container.innerHTML = "geolocation finns";
     navigator.permissions.query({ name: 'geolocation' }).then((res) => {
-        if (res.state === 'denied') {
-            console.log('Fick inte använda accelerometern');
-            return;
+        if (res.state === 'granted') {
+            gps.addEventListener("click", showLocation);
         }
-        gps.addEventListener("click", showLocation);
+        console.log('Fick inte använda geolocation');
+        container.innerHTML = 'Fick inte använda geolocation';
     });
 }
 else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
 if (window.DeviceOrientationEvent) {
-    state.innerHTML = "orientation";
-    window.addEventListener('deviceorientation', handleOrientation, true);
+    DeviceOrientationEvent.requestPermission().then((res) => {
+        if (res === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation, true);
+            state.innerHTML = "orientation";
+        }
+        container.innerHTML = 'Fick inte använda deviceorientation';
+    });
 }
 // else if (window.DeviceMotionEvent) {
 //     state.innerHTML = "motion";

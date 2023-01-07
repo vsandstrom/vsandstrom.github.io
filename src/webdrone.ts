@@ -72,11 +72,11 @@ let intervalID:any = 0;
 if ('geolocation' in navigator){
     container.innerHTML = "geolocation finns";
     navigator.permissions.query({name: 'geolocation'}).then((res) => {
-        if (res.state === 'denied') {
-            console.log('Fick inte använda accelerometern');
-            return;
+        if (res.state === 'granted') {
+            gps.addEventListener("click", showLocation);
         }
-        gps.addEventListener("click", showLocation);
+        console.log('Fick inte använda geolocation');
+        container.innerHTML = 'Fick inte använda geolocation';
     })
 
 } else {
@@ -84,8 +84,14 @@ if ('geolocation' in navigator){
 }
 
 if (window.DeviceOrientationEvent) {
-    state.innerHTML = "orientation";
-    window.addEventListener('deviceorientation', handleOrientation, true);
+    (DeviceOrientationEvent as any).requestPermission().then((res: string) => {
+        if (res === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation, true);
+            state.innerHTML = "orientation";
+        }
+        container.innerHTML = 'Fick inte använda deviceorientation';
+
+    })
 
 }
 // else if (window.DeviceMotionEvent) {

@@ -4,6 +4,7 @@ let start: HTMLElement | null = document.getElementById("startLocation");
 let contGps: HTMLElement | null = document.getElementById("getContinuousLocation");
 let container: HTMLElement | null = document.getElementById("container");
 let motion: HTMLElement | null = document.getElementById("motion");
+let state: HTMLElement | null = document.getElementById("status");
 
 const url: string = "http://127.0.0.1:5000";
 
@@ -39,6 +40,7 @@ interface Position {
 }
 
 if ("Gyroscope" in window) {
+    state.innerHTML = "Gyroscope exist";
     console.log("hello");
 }
 
@@ -70,6 +72,7 @@ let intervalID:any = 0;
 
 
 if ('geolocation' in navigator){
+    container.innerHTML = "navigatorn finns";
     gps.addEventListener("click", showLocation);
 
 

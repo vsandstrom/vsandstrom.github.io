@@ -8,17 +8,17 @@ const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const state = document.getElementById("status");
 
-// const handleMotion = (e) => {
-//     let acc = e.acceleration;
-//     let accGrav = e.accelerationIncludingGravity;
-//     let rotation = e.rotationRate;
-//     motion.innerHTML =
-//         `
-//     x: ${acc.x * 2}
-//     y: ${acc.y * 2}
-//     z: ${acc.z * 2}
-//     `;
-// };
+const handleMotion = (e) => {
+    let acc = e.acceleration;
+    let accGrav = e.accelerationIncludingGravity;
+    let rotation = e.rotationRate;
+    motion.innerHTML =
+        `
+    x: ${acc.x * 2}
+    y: ${acc.y * 2}
+    z: ${acc.z * 2}
+    `;
+};
 
 const handleOrientation = (e) => {
     motion.innerHTML =

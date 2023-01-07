@@ -92,6 +92,9 @@ if (window.DeviceOrientationEvent) {
         container.innerHTML = 'Fick inte använda deviceorientation';
 
     })
+    .catch((error:string) => {
+        console.log(error);
+    })
 
 }
 // else if (window.DeviceMotionEvent) {

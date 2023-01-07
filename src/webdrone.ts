@@ -10,10 +10,6 @@ const url: string = "http://127.0.0.1:5000";
 
 
 
-if (window.DeviceMotionEvent) {
-    window.addEventListener("devicemotion", (e) => handleMotion(e));
-
-}
 
 const handleMotion = (e: DeviceMotionEvent) => {
     motion.innerHTML = 
@@ -23,8 +19,6 @@ const handleMotion = (e: DeviceMotionEvent) => {
     z: ${e.rotationRate.gamma}
     `
 }
-
-
 
 interface Position {
     time: number,
@@ -65,17 +59,20 @@ let intervalID:any = 0;
 
 
 if ('geolocation' in navigator){
-    container.innerHTML = "navigatorn finns";
-
+    container.innerHTML = "geolocation finns";
     navigator.permissions.query({name: 'geolocation'}).then((res) => {
         if (res.state === 'denied') {
             console.log('Fick inte använda accelerometern');
             return;
         }
         gps.addEventListener("click", showLocation);
-
     })
 
 } else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
+}
+
+if (window.DeviceMotionEvent) {
+    window.addEventListener("devicemotion", (e) => handleMotion(e));
+
 }

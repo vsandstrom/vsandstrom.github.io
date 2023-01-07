@@ -9,13 +9,6 @@ let state: HTMLElement | null = document.getElementById("status");
 const url: string = "http://127.0.0.1:5000";
 
 
-navigator.permissions.query({name: 'geolocation'}).then((res) => {
-    if (res.state === 'denied') {
-        console.log('Fick inte använda accelerometern');
-        return;
-    }
-
-})
 
 if (window.DeviceMotionEvent) {
     window.addEventListener("devicemotion", (e) => handleMotion(e));
@@ -73,8 +66,15 @@ let intervalID:any = 0;
 
 if ('geolocation' in navigator){
     container.innerHTML = "navigatorn finns";
-    gps.addEventListener("click", showLocation);
 
+    navigator.permissions.query({name: 'geolocation'}).then((res) => {
+        if (res.state === 'denied') {
+            console.log('Fick inte använda accelerometern');
+            return;
+        }
+        gps.addEventListener("click", showLocation);
+
+    })
 
 } else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";

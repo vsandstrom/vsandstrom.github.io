@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,7 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 let gps = document.getElementById("getLocation");
+let drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
 let start = document.getElementById("startLocation");
 let contGps = document.getElementById("getContinuousLocation");
@@ -31,17 +34,12 @@ const handleOrientation = (e) => {
     z: ${e.gamma}
     `;
 };
-// if ("Gyroscope" in window) {
-//     state.innerHTML = "Gyroscope exist";
-//     console.log("hello");
-// }
-// TODO: 
-// showLocation function is activated and should then asynchronously update its pos-object for the server
-// to poll
 const showLocation = () => {
     console.log("hello");
     // navigator.
-    navigator.geolocation.getCurrentPosition((pos) => __awaiter(this, void 0, void 0, function* () {
+    navigator.geolocation.getCurrentPosition((pos) => __awaiter(void 0, void 0, void 0, function* () {
+        gps.style.display = "none";
+        drone.style.display = "block";
         let time = new Date(pos.timestamp);
         console.log(time);
         if (container) {
@@ -75,11 +73,12 @@ if (window.DeviceOrientationEvent) {
     state.innerHTML = "orientation";
     window.addEventListener('deviceorientation', handleOrientation, true);
 }
-else if (window.DeviceMotionEvent) {
-    state.innerHTML = "motion";
-    window.addEventListener("devicemotion", handleMotion, true);
-}
-else {
-    // window.addEventListener('MozOrientation', () => handleMozOrientation());
-    state.innerHTML = "nothing";
-}
+// else if (window.DeviceMotionEvent) {
+//     state.innerHTML = "motion";
+//     window.addEventListener("devicemotion", handleMotion, true);
+//
+// }
+// else {
+//     // window.addEventListener('MozOrientation', () => handleMozOrientation());
+//     state.innerHTML = "nothing";
+// }

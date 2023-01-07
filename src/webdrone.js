@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 let gps = document.getElementById("getLocation");
 let drone = document.getElementById("tone_start");
@@ -19,11 +10,14 @@ let motion = document.getElementById("motion");
 let state = document.getElementById("status");
 const url = "http://127.0.0.1:5000";
 const handleMotion = (e) => {
+    let acc = e.acceleration;
+    let accGrav = e.accelerationIncludingGravity;
+    let rotation = e.rotationRate;
     motion.innerHTML =
         `
-    x: ${e.acceleration.x * 2}
-    y: ${e.acceleration.y * 2}
-    z: ${e.acceleration.z * 2}
+    x: ${acc.x * 2}
+    y: ${acc.y * 2}
+    z: ${acc.z * 2}
     `;
 };
 const handleOrientation = (e) => {
@@ -37,7 +31,7 @@ const handleOrientation = (e) => {
 const showLocation = () => {
     console.log("hello");
     // navigator.
-    navigator.geolocation.getCurrentPosition((pos) => __awaiter(void 0, void 0, void 0, function* () {
+    navigator.geolocation.getCurrentPosition(async (pos) => {
         gps.style.display = "none";
         drone.style.display = "block";
         let time = new Date(pos.timestamp);
@@ -53,7 +47,7 @@ const showLocation = () => {
 
             `;
         }
-    }));
+    });
 };
 let intervalID = 0;
 if ('geolocation' in navigator) {
@@ -61,6 +55,7 @@ if ('geolocation' in navigator) {
     navigator.permissions.query({ name: 'geolocation' }).then((res) => {
         if (res.state === 'granted') {
             gps.addEventListener("click", showLocation);
+            window.addEventListener('devicemotion', handleMotion, true);
         }
         console.log('Fick inte använda geolocation');
         container.innerHTML = 'Fick inte använda geolocation';
@@ -69,10 +64,17 @@ if ('geolocation' in navigator) {
 else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
-if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', handleOrientation, true);
-    state.innerHTML = "orientation";
-}
+// if (window.DeviceMotionEvent) {
+//     navigator.permissions.query({name: "geolocation"}).then((res) => {
+//         if (res.state === 'granted') {
+//             window.addEventListener('devicemotion', handleMotion, true);
+//         }
+//     })
+//     state.innerHTML = "motion";
+//
+// } else {
+//     console.log("not supported");
+// }
 // else if (window.DeviceMotionEvent) {
 //     state.innerHTML = "motion";
 //     window.addEventListener("devicemotion", handleMotion, true);

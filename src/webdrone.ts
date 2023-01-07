@@ -12,13 +12,17 @@ let state: HTMLElement | null = document.getElementById("status");
 const url: string = "http://127.0.0.1:5000";
 
 
-
 const handleMotion = (e: DeviceMotionEvent) => {
+    let acc = e.acceleration;
+    let accGrav = e.accelerationIncludingGravity;
+    let rotation = e.rotationRate;
+
+
     motion.innerHTML = 
     `
-    x: ${e.acceleration.x *2}
-    y: ${e.acceleration.y *2}
-    z: ${e.acceleration.z *2}
+    x: ${acc.x *2}
+    y: ${acc.y *2}
+    z: ${acc.z *2}
     `
 }
 
@@ -74,6 +78,7 @@ if ('geolocation' in navigator){
     navigator.permissions.query({name: 'geolocation'}).then((res) => {
         if (res.state === 'granted') {
             gps.addEventListener("click", showLocation);
+            window.addEventListener('devicemotion', handleMotion, true);
         }
         console.log('Fick inte använda geolocation');
         container.innerHTML = 'Fick inte använda geolocation';
@@ -83,11 +88,17 @@ if ('geolocation' in navigator){
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
 
-if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', handleOrientation, true);
-    state.innerHTML = "orientation";
-
-}
+// if (window.DeviceMotionEvent) {
+//     navigator.permissions.query({name: "geolocation"}).then((res) => {
+//         if (res.state === 'granted') {
+//             window.addEventListener('devicemotion', handleMotion, true);
+//         }
+//     })
+//     state.innerHTML = "motion";
+//
+// } else {
+//     console.log("not supported");
+// }
 // else if (window.DeviceMotionEvent) {
 //     state.innerHTML = "motion";
 //     window.addEventListener("devicemotion", handleMotion, true);

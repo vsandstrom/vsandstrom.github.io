@@ -72,11 +72,14 @@ else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
 if (window.DeviceMotionEvent) {
+    state.innerHTML = "motion";
     window.addEventListener("devicemotion", (e) => handleMotion(e));
 }
 else if (window.DeviceOrientationEvent) {
+    state.innerHTML = "orientation";
     window.addEventListener('deviceorientation', (e) => handleOrientation(e));
 }
 else {
     // window.addEventListener('MozOrientation', () => handleMozOrientation());
+    state.innerHTML = "orientation";
 }

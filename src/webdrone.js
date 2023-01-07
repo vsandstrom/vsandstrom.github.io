@@ -73,11 +73,11 @@ else {
 }
 if (window.DeviceMotionEvent) {
     state.innerHTML = "motion";
-    window.addEventListener("devicemotion", handleMotion);
+    window.addEventListener("devicemotion", handleMotion, false);
 }
 else if (window.DeviceOrientationEvent) {
     state.innerHTML = "orientation";
-    window.addEventListener('deviceorientation', handleOrientation);
+    window.addEventListener('deviceorientation', handleOrientation, false);
 }
 else {
     // window.addEventListener('MozOrientation', () => handleMozOrientation());

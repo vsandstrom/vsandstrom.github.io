@@ -6,7 +6,6 @@
     "moduleResolution": "node"
   },
   "files": [                                  /* Compiles files to current directory*/
-      "./src/public/gps.ts",
-      "./src/app.ts",
+      "./src/webdrone.ts",
   ]
 }

@@ -65,30 +65,15 @@ if ('geolocation' in navigator) {
             gps.addEventListener("click", showLocation);
             // window.addEventListener('devicemotion', handleMotion, true);
         }
-        console.log('Fick inte använda geolocation');
-        container.innerHTML = 'Fick inte använda geolocation';
+        else if (res.state === 'prompt') {
+            container.innerHTML = 'Ge webbläsaren tillåtelse att se din plats om du vill';
+        }
+        else {
+            console.log('Fick inte använda geolocation');
+            container.innerHTML = 'Fick inte använda geolocation';
+        }
     });
 }
 else {
     container.innerHTML = "no navigator available at this time to aid u on ur quest";
 }
-// if (window.DeviceMotionEvent) {
-//     navigator.permissions.query({name: "geolocation"}).then((res) => {
-//         if (res.state === 'granted') {
-//             window.addEventListener('devicemotion', handleMotion, true);
-//         }
-//     })
-//     state.innerHTML = "motion";
-//
-// } else {
-//     console.log("not supported");
-// }
-// else if (window.DeviceMotionEvent) {
-//     state.innerHTML = "motion";
-//     window.addEventListener("devicemotion", handleMotion, true);
-//
-// }
-// else {
-//     // window.addEventListener('MozOrientation', () => handleMozOrientation());
-//     state.innerHTML = "nothing";
-// }

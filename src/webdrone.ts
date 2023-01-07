@@ -8,13 +8,13 @@ let motion: HTMLElement | null = document.getElementById("motion");
 const url: string = "http://127.0.0.1:5000";
 
 
-// navigator.permissions.query({name: 'geolocation'}).then((res) => {
-//     if (res.state === 'denied') {
-//         console.log('Fick inte använda accelerometern');
-//         return;
-//     }
-//
-// })
+navigator.permissions.query({name: 'geolocation'}).then((res) => {
+    if (res.state === 'denied') {
+        console.log('Fick inte använda accelerometern');
+        return;
+    }
+
+})
 
 if (window.DeviceMotionEvent) {
     window.addEventListener("devicemotion", (e) => handleMotion(e));

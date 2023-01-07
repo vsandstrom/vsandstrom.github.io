@@ -92,13 +92,14 @@ if ('geolocation' in navigator){
 
 if (window.DeviceMotionEvent) {
     state.innerHTML = "motion";
-    window.addEventListener("devicemotion", (e) => handleMotion(e));
+    window.addEventListener("devicemotion", handleMotion);
 
 } else if (window.DeviceOrientationEvent) {
     state.innerHTML = "orientation";
-    window.addEventListener('deviceorientation', (e) => handleOrientation(e));
+    window.addEventListener('deviceorientation', handleOrientation);
+
 
 } else {
     // window.addEventListener('MozOrientation', () => handleMozOrientation());
-    state.innerHTML = "orientation";
+    state.innerHTML = "nothing";
 }

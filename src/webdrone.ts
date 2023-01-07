@@ -14,11 +14,29 @@ const url: string = "http://127.0.0.1:5000";
 const handleMotion = (e: DeviceMotionEvent) => {
     motion.innerHTML = 
     `
-    x: ${e.rotationRate.alpha}
-    y: ${e.rotationRate.beta}
-    z: ${e.rotationRate.gamma}
+    x: ${e.acceleration.x *2}
+    y: ${e.acceleration.y *2}
+    z: ${e.acceleration.z *2}
     `
 }
+
+const handleOrientation = (e: DeviceOrientationEvent) => {
+    motion.innerHTML = 
+    `
+    x: ${e.alpha}
+    y: ${e.beta}
+    z: ${e.gamma}
+    `
+}
+
+// const handleMozOrientation = () => {
+//     motion.innerHTML = 
+//     `
+//     x: ${orientation.x * 50}
+//     y: ${orientation.y * 50}
+//     z: ${orientation.z * 50}
+//     `
+// }
 
 interface Position {
     time: number,
@@ -75,4 +93,9 @@ if ('geolocation' in navigator){
 if (window.DeviceMotionEvent) {
     window.addEventListener("devicemotion", (e) => handleMotion(e));
 
+} else if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (e) => handleOrientation(e));
+
+} else {
+    // window.addEventListener('MozOrientation', () => handleMozOrientation());
 }

@@ -11,10 +11,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: navy;
+    background-color: black;
+    color: ivory;
 }
 
-@media only screen and (max-width: 600px)  {
+@media only screen and (min-width: 800px)  {
     body{
         background-color: blue;
     }

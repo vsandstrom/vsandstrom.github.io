@@ -44,10 +44,10 @@ interface Position {
     longitude: number
 }
 
-if ("Gyroscope" in window) {
-    state.innerHTML = "Gyroscope exist";
-    console.log("hello");
-}
+// if ("Gyroscope" in window) {
+//     state.innerHTML = "Gyroscope exist";
+//     console.log("hello");
+// }
 
 // TODO: 
 // showLocation function is activated and should then asynchronously update its pos-object for the server

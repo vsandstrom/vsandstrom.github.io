@@ -32,16 +32,16 @@ const handleOrientation = (e) => {
 
 const getOrientation = () => {
     DeviceMotionEvent.requestPermission().then((res) => {
-        if (res.state === 'granted') {
+        if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
             // window.addEventListener('devicemotion', handleMotion, true);
         }
-        else if (res.state === 'prompt') {
-            container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';
-        }
-        else {
-            console.log('Fick inte använda geolocation');
-            container.innerHTML = 'Fick inte använda gyroskop';
-        }
+        // else if (res === 'prompt') {
+        //     container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';
+        // }
+        // else {
+        //     console.log('Fick inte använda geolocation');
+        //     container.innerHTML = 'Fick inte använda gyroskop';
+        // }
     });
 }

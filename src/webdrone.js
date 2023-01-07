@@ -6,6 +6,7 @@ const start = document.getElementById("startLocation");
 const contGps = document.getElementById("getContinuousLocation");
 const container = document.getElementById("container");
 const motion = document.getElementById("motion");
+const content = document.getElementById("content");
 const state = document.getElementById("status");
 
 const handleMotion = (e) => {
@@ -21,12 +22,13 @@ const handleMotion = (e) => {
 };
 
 const handleOrientation = (e) => {
-    motion.innerHTML =
-        `
-    x: ${e.alpha}
-    y: ${e.beta}
-    z: ${e.gamma}
-    `;
+    content.innerHTML = e;
+    // motion.innerHTML =
+    //     `
+    // x: ${e.alpha}
+    // y: ${e.beta}
+    // z: ${e.gamma}
+    // `;
 };
 
 const getOrientation = () => {

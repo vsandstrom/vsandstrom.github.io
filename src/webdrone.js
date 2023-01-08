@@ -9,7 +9,6 @@ const orientation = document.getElementById("orientation");
 const state = document.getElementById("status");
 
 const FUND = 200;
-import * as Tone from 'tone';
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;

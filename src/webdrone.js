@@ -1,4 +1,5 @@
 const gps = document.getElementById("getLocation");
+const gyro = document.getElementById("gyro_permission");
 const drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
 const start = document.getElementById("startLocation");
@@ -15,6 +16,7 @@ const FUND = 200;
 let vol = new Tone.Volume(0.5).toDestination();
 let verb = new Tone.Reverb(4).chain(vol);
 let fm0 = new Tone.FMSynth().chain(verb);
+let fm1 = new Tone.FMSynth().chain(verb);
 // fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;
@@ -38,6 +40,9 @@ const handleMotion = (e) => {
 
     fm0.set({
         frequency: FUND + accx
+    });
+    fm1.set({
+        frequency: FUND - accx
     });
 
 
@@ -82,6 +87,7 @@ const handleOrientation = (e) => {
 const toneStart = async () => {
     await Tone.start();
     fm0.triggerAttack(FUND, "+0.5", 0.4);
+    drone.style.display ="none";
 };
 
 const getOrientation = () => {
@@ -90,7 +96,8 @@ const getOrientation = () => {
             if (res === 'granted') {
                 window.addEventListener("deviceorientation", handleOrientation);
                 window.addEventListener('devicemotion', handleMotion);
-                drone.style.display="none";
+                drone.style.display="block";
+                gyro.style.display="none";
             }
         });
     } else {
@@ -98,7 +105,8 @@ const getOrientation = () => {
             if (res === 'granted') {
                 window.addEventListener("deviceorientation", handleOrientation);
                 window.addEventListener('devicemotion', handleMotion);
-                drone.style.display="none";
+                drone.style.display="block";
+                gyro.style.display="none";
             }
         });
 

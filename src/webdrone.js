@@ -9,7 +9,7 @@ const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
 
-import * as Tone from 'tone';
+// import * as Tone from 'tone';
 
 const FUND = 200;
 
@@ -17,7 +17,6 @@ let vol = new Tone.Volume(0.5).toDestination();
 let verb = new Tone.Reverb(4).chain(vol);
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
-// fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -87,7 +86,6 @@ const handleOrientation = (e) => {
 const toneStart = async () => {
     await Tone.start();
     fm0.triggerAttack(FUND, "+0.5", 0.4);
-    drone.style.display ="none"
 };
 
 const getOrientation = () => {

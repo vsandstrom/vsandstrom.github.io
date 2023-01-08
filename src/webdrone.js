@@ -53,16 +53,18 @@ const handleOrientation = (e) => {
 //
 // })
 
+const toneStart = () => {
+    Tone.start();
+    let fm0 = new Tone.FMSynth().toDestination();
+    fm0.triggerAttack("C2", "+0.5", 0.4);
+};
+
 const getOrientation = () => {
     DeviceMotionEvent.requestPermission().then((res) => {
         if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
             window.addEventListener('devicemotion', handleMotion);
-            Tone.start();
             drone.style.display="none";
-            let fm0 = new Tone.FMSynth().toDestination();
-            fm0.triggerAttack("C2", "+0.5", 0.4);
-
         }
         // else if (res === 'prompt') {
         //     container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';

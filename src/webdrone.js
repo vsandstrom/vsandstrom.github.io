@@ -34,6 +34,9 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
+    fm0.set
+
+
 
 };
 
@@ -74,23 +77,26 @@ const handleOrientation = (e) => {
 
 const toneStart = async () => {
     await Tone.start();
-    let fm0 = new Tone.FMSynth().chain(verb);
-    fm0.triggerAttack("C2", "+0.5", 0.4);
+    fm0.triggerAttack(FUND, "+0.5", 0.4);
 };
 
 const getOrientation = () => {
-    DeviceMotionEvent.requestPermission().then((res) => {
-        if (res === 'granted') {
-            window.addEventListener("deviceorientation", handleOrientation);
-            window.addEventListener('devicemotion', handleMotion);
-            drone.style.display="none";
-        }
-        // else if (res === 'prompt') {
-        //     container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';
-        // }
-        // else {
-        //     console.log('Fick inte använda geolocation');
-        //     container.innerHTML = 'Fick inte använda gyroskop';
-        // }
-    });
+    if (DeviceMotionEvent.requestPermission === 'function') {
+        DeviceMotionEvent.requestPermission().then((res) => {
+            if (res === 'granted') {
+                window.addEventListener("deviceorientation", handleOrientation);
+                window.addEventListener('devicemotion', handleMotion);
+                drone.style.display="none";
+            }
+        });
+    } else {
+        DeviceOrientationEvent.requestPermission().then((res) => {
+            if (res === 'granted') {
+                window.addEventListener("deviceorientation", handleOrientation);
+                window.addEventListener('devicemotion', handleMotion);
+                drone.style.display="none";
+            }
+        });
+
+    }
 }

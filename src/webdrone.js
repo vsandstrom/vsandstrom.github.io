@@ -41,7 +41,7 @@ const handleMotion = (e) => {
         frequency: FUND + accx
     });
     fm1.set({
-        frequency: FUND - accx
+        frequency: (FUND * 1.125) - accx
     });
 
 
@@ -86,6 +86,7 @@ const handleOrientation = (e) => {
 const toneStart = async () => {
     await Tone.start();
     fm0.triggerAttack(FUND, "+0.5", 0.4);
+    fm1.triggerAttack(FUND, "+0.5", 0.4);
 };
 
 const getOrientation = () => {

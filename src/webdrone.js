@@ -1,4 +1,4 @@
-// import * as Tone from 'tone';
+import * as Tone from 'tone';
 const gps = document.getElementById("getLocation");
 const drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
@@ -8,6 +8,8 @@ const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const orientation = document.getElementById("orientation");
 const state = document.getElementById("status");
+
+const FUND = 200;
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -35,18 +37,30 @@ const handleOrientation = (e) => {
     oriy = e.beta;
     oriz = e.gamma;
 
-    content.innerHTML = `
+    orientation.innerHTML = `
         x: ${Math.floor(orix)}<br>
         y: ${Math.floor(oriy)}<br>
         z: ${Math.floor(oriz)}<br>
     `;
 };
 
+drone.addEventListener('click', async () => {
+    await Tone.start();
+
+    let fm2 = new Tone.FMOscillator(FUND )
+
+    let fm1 = new Tone.FMOscillator(FUND, )
+
+})
+
 const getOrientation = () => {
     DeviceMotionEvent.requestPermission().then((res) => {
         if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
             window.addEventListener('devicemotion', handleMotion);
+            Tone.start();
+            drone.style.display="none";
+
         }
         // else if (res === 'prompt') {
         //     container.innerHTML = 'Ge webbläsaren tillåtelse att att använda gyroskop';

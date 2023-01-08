@@ -12,8 +12,8 @@ body {
     flex-direction: row;
     /* align-items: center; */
     justify-content: center;
-    background-color:dimgrey;
-    color: ivory;
+    background-color:darkgrey;
+    color: whitesmoke;
 }
 
 tone_start {

@@ -17,6 +17,7 @@ let vol = new Tone.Volume(0.5).toDestination();
 let verb = new Tone.Reverb(4).chain(vol);
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
+let fm2 = new Tone.FMSynth().chain(verb);
 // fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;
@@ -42,7 +43,10 @@ const handleMotion = (e) => {
         frequency: FUND + accx
     });
     fm1.set({
-        frequency: FUND - accx
+        frequency: (FUND * 5/4 )- accx
+    });
+    fm2.set({
+        frequency: (FUND * 9/8 )- accx
     });
 
 

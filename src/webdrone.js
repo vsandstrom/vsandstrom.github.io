@@ -14,7 +14,7 @@ const FUND = 200;
 
 let vol = new Tone.Volume(0.5).toDestination();
 let verb = new Tone.Reverb(4).chain(vol);
-// let fm0 = new Tone.FMSynth().chain(verb);
+let fm0 = new Tone.FMSynth().chain(verb);
 // fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;

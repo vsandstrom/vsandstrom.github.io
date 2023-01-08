@@ -8,7 +8,14 @@ const motion = document.getElementById("motion");
 const orientation = document.getElementById("orientation");
 const state = document.getElementById("status");
 
+// import * as Tone from 'tone';
+
 const FUND = 200;
+
+let vol = new Tone.Volume(0.5).toDestination();
+let verb = new Tone.Reverb(4).chain(vol);
+// let fm0 = new Tone.FMSynth().chain(verb);
+// fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -52,9 +59,22 @@ const handleOrientation = (e) => {
 //
 // })
 
-const toneStart = () => {
-    Tone.start();
-    let fm0 = new Tone.FMSynth().toDestination();
+// drone.addEventListener('click', async() => {
+//     await Tone.start();
+//     if (Tone.Transport.state !== 'started') {
+//         Tone.Transport.start();
+//         drone.innerHTML = "STOP DRONE";
+//     } else {
+//         Tone.Transport.stop();
+//         drone.innerHTML = "START DRONE";
+//
+//
+//     }
+// });
+
+const toneStart = async () => {
+    await Tone.start();
+    let fm0 = new Tone.FMSynth().chain(verb);
     fm0.triggerAttack("C2", "+0.5", 0.4);
 };
 

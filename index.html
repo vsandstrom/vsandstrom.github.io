@@ -15,24 +15,28 @@
             <!-- </div> -->
         </header>
         <main>
-            <button id="tone_start" onclick="getOrientation()">
-                Start Drone
-            </button>
-            <button onclick="toneStart()">
-            </button>
+            <div>
+                <button id="gyro_permission" onclick="getOrientation()">
+                    Start Gyroscope
+                </button>
+                <button id="tone_start" onclick="toneStart()">
+                    Start Drone
+                </button>
+            </div>
 
             <div>
                 <p id="orientation">
                     change me
                 </p>
             </div>
+
             <div>
                 <p id="motion">
-
                 </p>
-            </div>
-        </main>
 
+            </div>
+
+        </main>
 
         <script src="https://unpkg.com/tone"></script>
         <script src="./src/webdrone.js"></script>

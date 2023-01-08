@@ -60,6 +60,8 @@ const getOrientation = () => {
             window.addEventListener('devicemotion', handleMotion);
             Tone.start();
             drone.style.display="none";
+            let fm0 = new Tone.FMSynth().toDestination();
+            fm0.triggerAttack("C2", "+0.5", 0.4);
 
         }
         // else if (res === 'prompt') {

@@ -44,22 +44,22 @@ const handleOrientation = (e) => {
     `;
 };
 
-drone.addEventListener('click', async () => {
-    await Tone.start();
-
-    let fm2 = new Tone.FMOscillator(FUND )
-
-    let fm1 = new Tone.FMOscillator(FUND, )
-
-})
+// drone.addEventListener('click', async () => {
+//     await Tone.start();
+//
+//     let fm2 = new Tone.FMOscillator(FUND )
+//
+//     let fm1 = new Tone.FMOscillator(FUND, )
+//
+// })
 
 const getOrientation = () => {
     DeviceMotionEvent.requestPermission().then((res) => {
         if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
             window.addEventListener('devicemotion', handleMotion);
-            Tone.start();
-            drone.style.display="none";
+            // Tone.start();
+            // drone.style.display="none";
 
         }
         // else if (res === 'prompt') {

@@ -1,4 +1,3 @@
-// import * as Tone from 'tone';
 const gps = document.getElementById("getLocation");
 const drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
@@ -9,7 +8,8 @@ const motion = document.getElementById("motion");
 const orientation = document.getElementById("orientation");
 const state = document.getElementById("status");
 
-// const FUND = 200;
+const FUND = 200;
+import * as Tone from 'tone';
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -58,8 +58,8 @@ const getOrientation = () => {
         if (res === 'granted') {
             window.addEventListener("deviceorientation", handleOrientation);
             window.addEventListener('devicemotion', handleMotion);
-            // Tone.start();
-            // drone.style.display="none";
+            Tone.start();
+            drone.style.display="none";
 
         }
         // else if (res === 'prompt') {

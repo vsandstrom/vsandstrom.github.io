@@ -13,21 +13,12 @@ const state = document.getElementById("status");
 
 const FUND = 200;
 
-let pan0 = new Tone.Panner3D(0,0,0).toDestination();
-let pan1 = new Tone.Panner3D(0,0,0).toDestination();
-let pan2 = new Tone.Panner3D(0,0,0).toDestination();
+let vol = new Tone.Volume(0.5).toDestination();
+let verb = new Tone.Reverb(4).chain(vol);
 
-let vol0 = new Tone.Volume(0.5).chain(pan0);
-let vol1 = new Tone.Volume(0.5).chain(pan1);
-let vol2 = new Tone.Volume(0.5).chain(pan2);
-
-let verb0 = new Tone.Reverb(4).chain(vol0);
-let verb1 = new Tone.Reverb(4).chain(vol1);
-let verb2 = new Tone.Reverb(4).chain(vol2);
-
-let fm0 = new Tone.FMSynth({type: "fmtriangle"}).chain(verb);
-let fm1 = new Tone.FMSynth({type: "fmtriangle"}).chain(verb);
-let fm2 = new Tone.FMSynth({type: "fmtriangle"}).chain(verb);
+let fm0 = new Tone.FMSynth({frequency: FUND, type: "fmtriangle"}).chain(verb);
+let fm1 = new Tone.FMSynth({frequency: FUND, type: "fmtriangle"}).chain(verb);
+let fm2 = new Tone.FMSynth({frequency: FUND, type: "fmtriangle"}).chain(verb);
 // fm0.triggerAttackRelease("C2", "8n");
 
 let accx, accy, accz = 0.0;
@@ -48,14 +39,15 @@ const handleMotion = (e) => {
     `;
 
 
+
     fm0.set({
-        frequency: (200 + accx)
+        frequency: FUND + accx
     });
     fm1.set({
-        frequency: ((200 * (5/4) )- accx)
+        frequency: (FUND * 5/4 )- accx
     });
     fm2.set({
-        frequency: ((200 * (9/8) )- accx)
+        frequency: (FUND * 9/8 )- accx
     });
 
 
@@ -73,16 +65,6 @@ const handleOrientation = (e) => {
         y: ${Math.floor(oriy)}<br>
         z: ${Math.floor(oriz)}<br>
     `;
-
-    pan0.set({
-        positionX: orix,
-        positionY: oriy
-    });
-    pan1.set({
-        positionX: 360 - orix,
-        positionY: oriy
-    });
-
 };
 
 // drone.addEventListener('click', async () => {

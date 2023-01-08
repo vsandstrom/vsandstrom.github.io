@@ -5,7 +5,7 @@ const start = document.getElementById("startLocation");
 const contGps = document.getElementById("getContinuousLocation");
 const container = document.getElementById("container");
 const motion = document.getElementById("motion");
-const orientation = document.getElementById("orientation");
+const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
 
 // import * as Tone from 'tone';
@@ -34,7 +34,11 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    fm0.set
+
+
+    fm0.set({
+        frequency: FUND + accx
+    });
 
 
 
@@ -46,7 +50,7 @@ const handleOrientation = (e) => {
     oriy = e.beta;
     oriz = e.gamma;
 
-    orientation.innerHTML = `
+    orient.innerHTML = `
         x: ${Math.floor(orix)}<br>
         y: ${Math.floor(oriy)}<br>
         z: ${Math.floor(oriz)}<br>

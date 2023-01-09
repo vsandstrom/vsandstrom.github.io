@@ -89,13 +89,13 @@ const toneStart = async () => {
         fm1.triggerAttackRelease(note, "5", time);
     }, [ [2.5, FUND*7 + accy], [8, FUND*6 + accy], [14, FUND*3 + accy]]);
     part1.loop = true;
-    part1.start("8n");
+    part1.start("0.2");
     
     let part2 = new Tone.Part((time, note) => {
         fm2.triggerAttackRelease(note, "5", time);
     }, [ [3, FUND*1.125 - accy], [7, FUND*5/3 - accy], [20, FUND*5/4 - accy] ]);
     part2.loop = true;
-    part2.start("4n");
+    part2.start("0.5");
 
     Tone.Transport.start();
 

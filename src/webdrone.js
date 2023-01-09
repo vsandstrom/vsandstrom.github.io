@@ -70,33 +70,36 @@ const handleMotion = (e) => {
 
 const toneStart = async () => {
     await Tone.start();
+    fm0.triggerAttack(FUND, "0.5", 4);
+    fm1.triggerAttack(FUND * 1.25, "0.5", 4);
+    fm2.triggerAttack(FUND * 1.125, "0.5", 4);
 
-    let now = Tone.now();
-
-    let loop = new Tone.Loop((time) => {
-        time = time + now;
-        fm0.triggerAttackRelease(FUND, 2, time);
-        fm1.triggerAttackRelease(FUND * 1.25, 2, time + 0.7);
-        fm2.triggerAttackRelease(FUND * 1.125, 2, time + 0.9);
-        
-        fm0.triggerAttackRelease(FUND * 0.66, 2, time + 2);
-        fm1.triggerAttackRelease(FUND * 7/4, 2, time+2.1);
-        fm2.triggerAttackRelease(FUND * 1.125, 2, time + 2.25);
-        
-        fm0.triggerAttackRelease(FUND, 2, time + 3);
-        fm1.triggerAttackRelease(FUND * 3/2, 2, time + 3.8);
-        fm2.triggerAttackRelease(FUND * 5/3, 2, time + 4);
-        
-        fm0.triggerAttackRelease(FUND * 0.5, 2, time + 6.2);
-        fm1.triggerAttackRelease(FUND * 1.125, 2, time + 6.3);
-        fm2.triggerAttackRelease(FUND * 11/9, 2, time + 6.8);
-        
-        fm0.triggerAttackRelease(FUND, 2, time + 8.1);
-        fm1.triggerAttackRelease(FUND * 1.25, 2, time + 8.4);
-        fm2.triggerAttackRelease(FUND * 1.125, 2, time + 8,9);
-    }, 10).start(0);
-
-    Tone.Transport.start(now);
+    // let now = Tone.now();
+    //
+    // let loop = new Tone.Loop((time) => {
+    //     time = time + now;
+    //     fm0.triggerAttackRelease(FUND, 2, time);
+    //     fm1.triggerAttackRelease(FUND * 1.25, 2, time + 0.7);
+    //     fm2.triggerAttackRelease(FUND * 1.125, 2, time + 0.9);
+    //     
+    //     fm0.triggerAttackRelease(FUND * 0.66, 2, time + 2);
+    //     fm1.triggerAttackRelease(FUND * 7/4, 2, time+2.1);
+    //     fm2.triggerAttackRelease(FUND * 1.125, 2, time + 2.25);
+    //     
+    //     fm0.triggerAttackRelease(FUND, 2, time + 3);
+    //     fm1.triggerAttackRelease(FUND * 3/2, 2, time + 3.8);
+    //     fm2.triggerAttackRelease(FUND * 5/3, 2, time + 4);
+    //     
+    //     fm0.triggerAttackRelease(FUND * 0.5, 2, time + 6.2);
+    //     fm1.triggerAttackRelease(FUND * 1.125, 2, time + 6.3);
+    //     fm2.triggerAttackRelease(FUND * 11/9, 2, time + 6.8);
+    //     
+    //     fm0.triggerAttackRelease(FUND, 2, time + 8.1);
+    //     fm1.triggerAttackRelease(FUND * 1.25, 2, time + 8.4);
+    //     fm2.triggerAttackRelease(FUND * 1.125, 2, time + 8,9);
+    // }, 10).start(0);
+    //
+    // Tone.Transport.start(now);
 };
 
 const getOrientation = () => {

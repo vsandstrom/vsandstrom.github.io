@@ -13,17 +13,20 @@ const state = document.getElementById("status");
 
 const FUND = 200;
 
-let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
-let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
-let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
+// let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
+// let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
+// let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
 
-let vol0 = new Tone.Volume(1).chain(pan0);
-let vol1 = new Tone.Volume(1).chain(pan1);
-let vol2 = new Tone.Volume(1).chain(pan2);
+let vol0 = new Tone.Volume(1).toDestination();
+    // .chain(pan0);
+// let vol1 = new Tone.Volume(1)
+//     .chain(pan1);
+// let vol2 = new Tone.Volume(1)
+//     .chain(pan2);
 
 let verb0 = new Tone.Reverb(2).chain(vol0);
-let verb1 = new Tone.Reverb(2).chain(vol1);
-let verb2 = new Tone.Reverb(2).chain(vol2);
+let verb1 = new Tone.Reverb(2).chain(vol0);
+let verb2 = new Tone.Reverb(2).chain(vol0);
 
 
 let fm0 = new Tone.FMSynth().chain(pan0);

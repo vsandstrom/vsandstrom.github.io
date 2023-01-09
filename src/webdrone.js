@@ -10,22 +10,19 @@ const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
 const FUND = 200;
 
-let vol0 = new Tone.Volume(1)
-    .toDestination();
+let vol = new Tone.Volume(1) .toDestination();
 //     .chain(pan0);
 // let vol1 = new Tone.Volume(1)
 //     .chain(pan1);
 // let vol2 = new Tone.Volume(1)
 //     .chain(pan2);
 
-let verb0 = new Tone.Reverb(2).chain(vol0);
-let verb1 = new Tone.Reverb(2).chain(vol0);
-let verb2 = new Tone.Reverb(2).chain(vol0);
+let verb = new Tone.Reverb(2).chain(vol);
 
 
-let fm0 = new Tone.FMSynth().chain(verb0);
-let fm1 = new Tone.FMSynth().chain(verb1);
-let fm2 = new Tone.FMSynth().chain(verb2);
+let fm0 = new Tone.FMSynth().chain(verb);
+let fm1 = new Tone.FMSynth().chain(verb);
+let fm2 = new Tone.FMSynth().chain(verb);
 
 
 let accx, accy, accz = 0.0;
@@ -47,9 +44,9 @@ const handleOrientation = (e) => {
     `;
 
 
-    fm0.set({harmonicity: 5 - orix});
-    fm1.set({harmonicity: 3 + orix});
-    fm2.set({harmonicity: 3 + oriy});
+    // fm0.set({harmonicity: 5 - orix});
+    // fm1.set({harmonicity: 3 + orix});
+    // fm2.set({harmonicity: 3 + oriy});
 
 
 
@@ -74,29 +71,6 @@ const handleMotion = (e) => {
     fm2.set({ frequency: (FUND * 1.25) - accx });
 
 };
-
-
-// drone.addEventListener('click', async () => {
-//     await Tone.start();
-//
-//     let fm2 = new Tone.FMOscillator(FUND )
-//
-//     let fm1 = new Tone.FMOscillator(FUND, )
-//
-// })
-
-// drone.addEventListener('click', async() => {
-//     await Tone.start();
-//     if (Tone.Transport.state !== 'started') {
-//         Tone.Transport.start();
-//         drone.innerHTML = "STOP DRONE";
-//     } else {
-//         Tone.Transport.stop();
-//         drone.innerHTML = "START DRONE";
-//
-//
-//     }
-// });
 
 const toneStart = async () => {
     await Tone.start();

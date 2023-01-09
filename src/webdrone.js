@@ -19,11 +19,9 @@ let vol = new Tone.Volume(1) .toDestination();
 
 let verb = new Tone.Reverb(2).chain(vol);
 
-
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
 let fm2 = new Tone.FMSynth().chain(verb);
-
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -43,9 +41,10 @@ const handleOrientation = (e) => {
         z: ${Math.floor(e.gamma)}
     `;
 
-    fm0.set({harmonicity: 5 - orix});
-    fm1.set({harmonicity: 3 + orix});
-    fm2.set({harmonicity: 3 + oriy});
+
+    fm0.harmonicity.value =  5 - orix;
+    fm1.harmonicity.value = 3 + orix;
+    fm2.harmonicity.value = 3 + oriy;
 
 };
 
@@ -63,9 +62,9 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    fm0.set({ frequency: FUND + accx });
-    fm1.set({ frequency: (FUND * 1.125) + accy });
-    fm2.set({ frequency: (FUND * 1.25) - accx });
+    fm0.frequency.value = FUND + accx;
+    fm1.frequency.value = (FUND * 1.125) + accy;
+    fm2.frequency.value = (FUND * 1.25) - accx;
 
 };
 

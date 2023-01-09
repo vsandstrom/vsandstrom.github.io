@@ -74,6 +74,7 @@ const toneStart = async () => {
     fm1.triggerAttack(FUND * 1.25, "0.5", 4);
     fm2.triggerAttack(FUND * 1.125, "0.5", 4);
 
+    // Later project on creating a sequenced score
     // let now = Tone.now();
     //
     // let loop = new Tone.Loop((time) => {

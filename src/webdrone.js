@@ -13,25 +13,25 @@ const state = document.getElementById("status");
 
 const FUND = 200;
 
-// let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
-// let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
-// let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
+let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
+let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
+let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
 
-let vol0 = new Tone.Volume(1).toDestination();
-    // .chain(pan0);
-// let vol1 = new Tone.Volume(1)
-//     .chain(pan1);
-// let vol2 = new Tone.Volume(1)
-//     .chain(pan2);
+let vol0 = new Tone.Volume(1)
+    .chain(pan0);
+let vol1 = new Tone.Volume(1)
+    .chain(pan1);
+let vol2 = new Tone.Volume(1)
+    .chain(pan2);
 
 let verb0 = new Tone.Reverb(2).chain(vol0);
 let verb1 = new Tone.Reverb(2).chain(vol0);
 let verb2 = new Tone.Reverb(2).chain(vol0);
 
 
-let fm0 = new Tone.FMSynth().chain(pan0);
-let fm1 = new Tone.FMSynth().chain(pan1);
-let fm2 = new Tone.FMSynth().chain(pan2);
+let fm0 = new Tone.FMSynth().chain(verb0);
+let fm1 = new Tone.FMSynth().chain(verb1);
+let fm2 = new Tone.FMSynth().chain(verb2);
 
 
 let accx, accy, accz = 0.0;
@@ -79,12 +79,12 @@ const handleMotion = (e) => {
     fm1.set({ frequency: (FUND * 1.125) + accy });
     fm2.set({ frequency: (FUND * 1.25) - accx });
 
-    // pan0pos = pan0.get().positionX;
-    // pan0.set({positionX: pan0pos + accx});
-    // pan1pos = pan1.get().positionX;
-    // pan1.set({positionX: pan1pos + accx});
-    // pan2pos = pan2.get().positionX;
-    // pan2.set({positionX: pan2pos + accx});
+    pan0pos = pan0.get().positionX;
+    pan0.set({positionX: pan0pos + accx});
+    pan1pos = pan1.get().positionX;
+    pan1.set({positionX: pan1pos + accx});
+    pan2pos = pan2.get().positionX;
+    pan2.set({positionX: pan2pos + accx});
 };
 
 

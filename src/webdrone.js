@@ -17,9 +17,9 @@ let pan0 = new Tone.Panner3D({panningModel: "HRTF", positionX: 0}).toDestination
 let pan1 = new Tone.Panner3D({panningModel: "HRTF", positionX: 120}).toDestination();
 let pan2 = new Tone.Panner3D({panningModel: "HRTF", positionX: 240}).toDestination();
 
-let vol0 = new Tone.Volume(1).toDestination();
-let vol1 = new Tone.Volume(1).toDestination();
-let vol2 = new Tone.Volume(1).toDestination();
+let vol0 = new Tone.Volume(1).chain(pan0);
+let vol1 = new Tone.Volume(1).chain(pan1);
+let vol2 = new Tone.Volume(1).chain(pan2);
 
 let verb0 = new Tone.Reverb(2).chain(vol0);
 let verb1 = new Tone.Reverb(2).chain(vol1);
@@ -53,7 +53,6 @@ const handleOrientation = (e) => {
     fm0.set({harmonicity: 5 - orix});
     fm1.set({harmonicity: 3 + orix});
     fm2.set({harmonicity: 3 + oriy});
-    vol.set({volume: oriz})
 
 
 

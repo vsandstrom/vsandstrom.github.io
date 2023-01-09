@@ -8,7 +8,7 @@ const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
-const FUND = 45;
+const FUND = 60;
 
 let vol = new Tone.Volume(1) .toDestination();
 //     .chain(pan0);
@@ -78,7 +78,7 @@ const toneStart = async () => {
 
     let part0 = new Tone.Part(((time, note) => {
         fm0.triggerAttackRelease(note, "5", time);
-    }), [ [0, FUND * 7], 6, FUND*6], [14, FUND*5]]);
+    }), [ [0, FUND * 7], [6, FUND*6], [14, FUND*5] ]);
     part0.loop = true;
     part0.start(0);
 
@@ -95,6 +95,9 @@ const toneStart = async () => {
     part2.start(0);
 
     Tone.Transport.start();
+
+    drone.style.display = "none"
+
 
     // Later project on creating a sequenced score
     // let now = Tone.now();

@@ -13,13 +13,13 @@ const state = document.getElementById("status");
 
 const FUND = 200;
 
-// let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
-// let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
-// let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
+let pan0 = new Tone.Panner3D({positionX: 0}).toDestination();
+let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
+let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
 
-let vol0 = new Tone.Volume(1).toDestination();
-let vol1 = new Tone.Volume(1).toDestination();
-let vol2 = new Tone.Volume(1).toDestination();
+let vol0 = new Tone.Volume(1).chain(pan0);
+let vol1 = new Tone.Volume(1).chain(pan1);
+let vol2 = new Tone.Volume(1).chain(pan2);
 
 let verb0 = new Tone.Reverb(2).chain(vol0);
 let verb1 = new Tone.Reverb(2).chain(vol1);
@@ -40,7 +40,7 @@ const handleOrientation = (e) => {
     let inc = 1 / 360;
 
     orix = (e.alpha) * inc;
-    oriy =  e.beta * inc;
+    oriy =  (180 + e.beta) * inc;
     oriz = Math.abs(e.gamma) * inc;
 
     orient.innerHTML = `

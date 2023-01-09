@@ -62,9 +62,12 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    fm0.frequency.value += accx;
-    fm1.frequency.value += accy;
-    fm2.frequency.value -= accx;
+    let f0 = fm0.frequency.value;
+    fm0.frequency.value = f0 + accx;
+    let f1 = fm1.frequency.value;
+    fm1.frequency.value = f1 + accy;
+    let f2 = fm2.frequency.value;
+    fm2.frequency.value = f2 - accx;
 
 };
 

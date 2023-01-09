@@ -13,8 +13,8 @@ const state = document.getElementById("status");
 
 const FUND = 200;
 
-let vol = new Tone.Volume(0.5).toDestination();
-let verb = new Tone.Reverb(4).chain(vol);
+let vol = new Tone.Volume(1).toDestination();
+let verb = new Tone.Reverb(2).chain(vol);
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
 let fm2 = new Tone.FMSynth().chain(verb);
@@ -39,9 +39,12 @@ const handleOrientation = (e) => {
     `;
 
 
-    fm0.set({harmonicity: orix});
-    fm1.set({harmonicity: oriy});
-    fm2.set({harmonicity: oriz});
+    fm0.set({harmonicity: 5 - orix});
+    fm1.set({harmonicity: 3 + orix});
+    fm2.set({harmonicity: 3 + oriy});
+    vol.set({volume: oriz})
+
+
 
 };
 

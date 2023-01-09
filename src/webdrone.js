@@ -79,12 +79,12 @@ const handleMotion = (e) => {
     fm1.set({ frequency: (FUND * 1.125) + accy });
     fm2.set({ frequency: (FUND * 1.25) - accx });
 
-    pan0pos = pan0.get().positionX;
-    pan0.set({positionX: pan0pos + accx});
-    pan1pos = pan1.get().positionX;
-    pan1.set({positionX: pan1pos + accx});
-    pan2pos = pan2.get().positionX;
-    pan2.set({positionX: pan2pos + accx});
+    // pan0pos = pan0.get().positionX;
+    // pan0.set({positionX: pan0pos + accx});
+    // pan1pos = pan1.get().positionX;
+    // pan1.set({positionX: pan1pos + accx});
+    // pan2pos = pan2.get().positionX;
+    // pan2.set({positionX: pan2pos + accx});
 };
 
 

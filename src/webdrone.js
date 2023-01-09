@@ -62,9 +62,9 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    fm0.frequency.value = FUND + accx;
-    fm1.frequency.value = FUND * 1.25 + accy;
-    fm2.frequency.value = FUND * 1.125 - accx;
+    fm0.frequency.value += accx;
+    fm1.frequency.value += accy;
+    fm2.frequency.value -= accx;
 
 };
 
@@ -76,21 +76,21 @@ const toneStart = async () => {
     let s1 = [7, 6, 3];
     let s2 = [7, 9, 6, 8, 3, 6, 4];
 
-    let part0 = new Tone.Part(((time, note) => {
+    let part0 = new Tone.Part((time, note) => {
         fm0.triggerAttackRelease(note, "5", time);
-    }), [ [0, FUND * 7], [6, FUND*6], [14, FUND*5] ]);
+    }, [ [0, FUND * 7], [6, FUND*6], [14, FUND*5] ]);
     part0.loop = true;
     part0.start(0);
 
-    let part1 = new Tone.Part(((time, note) => {
+    let part1 = new Tone.Part((time, note) => {
         fm1.triggerAttackRelease(note, "5", time);
-    }), [ [2.5, FUND*7], [8, FUND*6], [14, FUND*3]]);
+    }, [ [2.5, FUND*7], [8, FUND*6], [14, FUND*3]]);
     part1.loop = true;
     part1.start(0);
     
-    let part2 = new Tone.Part(((time, note) => {
+    let part2 = new Tone.Part((time, note) => {
         fm2.triggerAttackRelease(note, "5", time);
-    }), [ [3, FUND*1.125], [7, FUND*5/3], [20, FUND*5/4] ]);
+    }, [ [3, FUND*1.125], [7, FUND*5/3], [20, FUND*5/4] ]);
     part2.loop = true;
     part2.start(0);
 

@@ -13,7 +13,12 @@ body {
     /* align-items: center; */
     justify-content: center;
     background-color:darkgrey;
-    color: whitesmoke;
+    color: black;
+}
+
+main {
+    margin-top: 15em;
+
 }
 
 tone_start {

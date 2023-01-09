@@ -8,7 +8,7 @@ const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
-const FUND = 200;
+const FUND = 45;
 
 let vol = new Tone.Volume(1) .toDestination();
 //     .chain(pan0);
@@ -72,18 +72,21 @@ const toneStart = async () => {
     await Tone.start();
     // fm1.triggerAttack(FUND * 1.25, "0.5", 4);
     // fm2.triggerAttack(FUND * 1.125, "0.5", 4);
+    let s0 = [7, 6, 5];
+    let s1 = [7, 6, 3];
+    let s2 = [7, 9, 6, 8, 3, 6, 4];
 
     let part0 = new Tone.Part(((time, note) => {
         fm0.triggerAttackRelease(note, "5", time);
-    }), [ [0, FUND], ["0:6", FUND*2/3] ]).start(0);
+    }), [ [0, FUND * 7], ["0:6", FUND*6], ["0:14", FUND*5]]).loop(true).start(0);
 
     let part1 = new Tone.Part(((time, note) => {
         fm1.triggerAttackRelease(note, "5", time);
-    }), [ ["0:2:5", FUND*1.25], ["0:7", FUND*2/3], ["0:13:5", FUND*1.125], ["0:18", FUND*6/5] ]).start(0);
+    }), [ ["0:2:5", FUND*7], ["0:7", FUND*6], ["0:13:5", FUND*3]]).loop(true).start(0);
     
     let part2 = new Tone.Part(((time, note) => {
         fm2.triggerAttackRelease(note, "5", time);
-    }), [ ["0:2:5", FUND*1.125], ["0:7", FUND*5/3], ["0:13:5", FUND*5/4] ]).start(0);
+    }), [ ["0:2:5", FUND*1.125], ["0:7", FUND*5/3], ["0:13:5", FUND*5/4] ]).loop(true).start(0);
 
     Tone.Transport.start();
 

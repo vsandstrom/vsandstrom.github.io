@@ -17,9 +17,33 @@ let vol = new Tone.Volume(0.5).toDestination();
 let verb = new Tone.Reverb(4).chain(vol);
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
+let fm2 = new Tone.FMSynth().chain(verb);
+
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
+
+const handleOrientation = (e) => {
+    // content.innerHTML = e;
+
+    let inc = 1 / 360;
+
+    orix = Math.abs(e.alpha) * inc;
+    oriy = Math.abs(e.beta) * inc;
+    oriz = Math.abs(e.gamma) * inc;
+
+    orient.innerHTML = `
+        x: ${Math.floor(e.alpha)}<br>
+        y: ${Math.floor(e.beta)}<br>
+        z: ${Math.floor(e.gamma)}
+    `;
+
+
+    fm0.set({harmonicity: orix});
+    fm1.set({harmonicity: oriy});
+    fm2.set({harmonicity: oriz});
+
+};
 
 const handleMotion = (e) => {
     let acc = e.acceleration;
@@ -35,31 +59,11 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-
-
-    fm0.set({
-        frequency: FUND + accx
-    });
-    fm1.set({
-        frequency: (FUND * 1.125) - accx
-    });
-
-
-
+    fm0.set({ frequency: FUND + accx });
+    fm1.set({ frequency: (FUND * 1.125) + accy });
+    fm2.set({ frequency: (FUND * 1.25) - accx });
 };
 
-const handleOrientation = (e) => {
-    // content.innerHTML = e;
-    orix = e.alpha;
-    oriy = e.beta;
-    oriz = e.gamma;
-
-    orient.innerHTML = `
-        x: ${Math.floor(orix)}<br>
-        y: ${Math.floor(oriy)}<br>
-        z: ${Math.floor(oriz)}<br>
-    `;
-};
 
 // drone.addEventListener('click', async () => {
 //     await Tone.start();
@@ -87,6 +91,7 @@ const toneStart = async () => {
     await Tone.start();
     fm0.triggerAttack(FUND, "+0.5", 0.4);
     fm1.triggerAttack(FUND, "+0.5", 0.4);
+    fm2.triggerAttack(FUND, "+0.5", 0.4);
 };
 
 const getOrientation = () => {

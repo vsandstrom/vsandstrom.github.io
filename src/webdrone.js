@@ -18,6 +18,7 @@ let pan1 = new Tone.Panner3D({positionX: 120}).toDestination();
 let pan2 = new Tone.Panner3D({positionX: 240}).toDestination();
 
 let vol0 = new Tone.Volume(1)
+    // .toDestination();
     .chain(pan0);
 let vol1 = new Tone.Volume(1)
     .chain(pan1);
@@ -25,8 +26,8 @@ let vol2 = new Tone.Volume(1)
     .chain(pan2);
 
 let verb0 = new Tone.Reverb(2).chain(vol0);
-let verb1 = new Tone.Reverb(2).chain(vol0);
-let verb2 = new Tone.Reverb(2).chain(vol0);
+let verb1 = new Tone.Reverb(2).chain(vol1);
+let verb2 = new Tone.Reverb(2).chain(vol2);
 
 
 let fm0 = new Tone.FMSynth().chain(verb0);
@@ -42,8 +43,8 @@ const handleOrientation = (e) => {
 
     let inc = 1 / 360;
 
-    orix = (e.alpha) * inc;
-    oriy =  (180 + e.beta) * inc;
+    orix = Math.abs(e.alpha) * inc;
+    oriy = Math.abs(e.beta) * inc;
     oriz = Math.abs(e.gamma) * inc;
 
     orient.innerHTML = `
@@ -81,8 +82,10 @@ const handleMotion = (e) => {
 
     pan0pos = pan0.get().positionX;
     pan0.set({positionX: pan0pos + accx});
+
     pan1pos = pan1.get().positionX;
     pan1.set({positionX: pan1pos + accx});
+
     pan2pos = pan2.get().positionX;
     pan2.set({positionX: pan2pos + accx});
 };

@@ -78,15 +78,15 @@ const toneStart = async () => {
 
     let part0 = new Tone.Part(((time, note) => {
         fm0.triggerAttackRelease(note, "5", time);
-    }), [ [0, FUND * 7], ["0:6", FUND*6], ["0:14", FUND*5]]).start(0).loop(true);
+    }), [ [0, FUND * 7], ["0:6", FUND*6], ["0:14", FUND*5]]).start(0);
 
     let part1 = new Tone.Part(((time, note) => {
         fm1.triggerAttackRelease(note, "5", time);
-    }), [ ["0:2:5", FUND*7], ["0:7", FUND*6], ["0:13:5", FUND*3]]).start(0).loop(true);
+    }), [ ["0:2:5", FUND*7], ["0:7", FUND*6], ["0:13:5", FUND*3]]).start(0);
     
     let part2 = new Tone.Part(((time, note) => {
         fm2.triggerAttackRelease(note, "5", time);
-    }), [ ["0:2:5", FUND*1.125], ["0:7", FUND*5/3], ["0:13:5", FUND*5/4] ]).start(0).loop(true);
+    }), [ ["0:2:5", FUND*1.125], ["0:7", FUND*5/3], ["0:13:5", FUND*5/4] ]).start(0);
 
     Tone.Transport.start();
 

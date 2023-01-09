@@ -43,12 +43,9 @@ const handleOrientation = (e) => {
         z: ${Math.floor(e.gamma)}
     `;
 
-
-    // fm0.set({harmonicity: 5 - orix});
-    // fm1.set({harmonicity: 3 + orix});
-    // fm2.set({harmonicity: 3 + oriy});
-
-
+    fm0.set({harmonicity: 5 - orix});
+    fm1.set({harmonicity: 3 + orix});
+    fm2.set({harmonicity: 3 + oriy});
 
 };
 

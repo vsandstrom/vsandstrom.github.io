@@ -8,7 +8,10 @@ const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
-const FUND = 60;
+
+let freq0 = 60;
+let freq1 = freq0 * 1.125;
+let freq2 = freq1 * 1.25;
 
 let vol = new Tone.Volume(1) .toDestination();
 //     .chain(pan0);
@@ -62,12 +65,9 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    let f0 = fm0.frequency.value;
-    fm0.frequency.value = f0 + accx;
-    let f1 = fm1.frequency.value;
-    fm1.frequency.value = f1 + accy;
-    let f2 = fm2.frequency.value;
-    fm2.frequency.value = f2 - accx;
+    fm0.frequency.value = freq0 + accx;
+    fm1.frequency.value = freq1 + accy;
+    fm2.frequency.value = freq2 - accz;
 
 };
 

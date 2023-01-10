@@ -62,12 +62,12 @@ const handleMotion = (e) => {
         z: ${Math.floor(accz)}<br>
     `;
 
-    // let f0 = fm0.frequency.value;
-    // fm0.frequency.value = f0 + accx;
-    // let f1 = fm1.frequency.value;
-    // fm1.frequency.value = f1 + accy;
-    // let f2 = fm2.frequency.value;
-    // fm2.frequency.value = f2 - accx;
+    let f0 = fm0.frequency.value;
+    fm0.frequency.value = f0 + accx;
+    let f1 = fm1.frequency.value;
+    fm1.frequency.value = f1 + accy;
+    let f2 = fm2.frequency.value;
+    fm2.frequency.value = f2 - accx;
 
 };
 
@@ -77,45 +77,24 @@ const getNextEvent = () => {
 
 const toneStart = async () => {
     await Tone.start();
-    // fm1.triggerAttack(FUND * 1.25, "0.5", 4);
-    // fm2.triggerAttack(FUND * 1.125, "0.5", 4);
+    fm0.triggerAttack(FUND, "0.5", 4);
+    fm1.triggerAttack(FUND * 1.25, "0.5", 4);
+    fm2.triggerAttack(FUND * 1.125, "0.5", 4);
 
-    let part0 = new Tone.Part((time, event) => {
-        fm0.triggerAttackRelease(event.note, event.duration, time);
-    }, [
-            {time: 0, note: FUND*7+accx, duration: 5},
-            {time: 6, note: FUND*6+accx, duration: 5},
-            {time: 14, note: FUND*5+accx, duration: 5},
-        ]);
-
-    part0.loop = true;
-    part0.art(0);
-
-    let part1 = new Tone.Part((time, event) => {
-        fm1.triggerAttackRelease(event.note, event.duration, time);
-    }, [ 
-        {time: 2.5, note: FUND*7+accy, duration: 5},
-        {time: 8, note: FUND*6+accy, duration: 5},
-        {time: 14, note: FUND*3+accy, duration: 5},
-    ]);
-    part1.loop = true;
-    part1.start("0.2");
-    
-    let part2 = new Tone.Part((time, note) => {
-        fm2.triggerAttackRelease(note, "5", time);
-    }, [ 
-        {time: 3, note: FUND*7-accy, duration: 5},
-        {time: 8.5, note: FUND*9 - accy, duration: 5},
-        {time: 8.5, note: FUND*6 - accy, duration: 5},
-        {time: 8.5, note: FUND*8 - accy, duration: 5},
-        {time: 8.5, note: FUND*3 - accy, duration: 5},
-        {time: 8.5, note: FUND*6 - accy, duration: 5},
-        {time: 8.5, note: FUND*4 - accy, duration: 5},
-        [3, FUND*1.125 - accy], [7, FUND*5/3 - accy], [20, FUND*5/4 - accy] 
-    ]);
-    part2.loop = true;
-    part2.start("0.5");
-
+    // setInterval({
+    //
+    //
+    // }, 14e3)
+    //
+    // setInterval({
+    //
+    //
+    // }, 14e3)
+    //
+    // setInterval({
+    //
+    //
+    // }, 14e3)
     Tone.Transport.start();
 
     drone.style.display = "none"

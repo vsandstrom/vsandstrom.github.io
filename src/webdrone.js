@@ -1,15 +1,8 @@
-const { warn } = require("console");
-
-const gps = document.getElementById("getLocation");
 const gyro = document.getElementById("gyro_permission");
 const drone = document.getElementById("tone_start");
 // Use this variable! does not exist yet
-const start = document.getElementById("startLocation");
-const contGps = document.getElementById("getContinuousLocation");
-const container = document.getElementById("container");
 const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
-const state = document.getElementById("status");
 
 let freq0 = 120;
 let freq1 = freq0 * 1.125;

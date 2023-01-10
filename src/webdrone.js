@@ -71,29 +71,48 @@ const handleMotion = (e) => {
 
 };
 
+const getNextEvent = () => {
+
+}
+
 const toneStart = async () => {
     await Tone.start();
     // fm1.triggerAttack(FUND * 1.25, "0.5", 4);
     // fm2.triggerAttack(FUND * 1.125, "0.5", 4);
-    let s0 = [7, 6, 5];
-    let s1 = [7, 6, 3];
-    let s2 = [7, 9, 6, 8, 3, 6, 4];
 
-    let part0 = new Tone.Part((time, note) => {
-        fm0.triggerAttackRelease(note, "5", time);
-    }, [ [0, FUND * 7 + accx], [6, FUND*6 + accx], [14, FUND*5 +accx] ]);
+    let part0 = new Tone.Part((time, event) => {
+        fm0.triggerAttackRelease(event.note, event.duration, time);
+    }, [
+            {time: 0, note: FUND*7+accx, duration: 5},
+            {time: 6, note: FUND*6+accx, duration: 5},
+            {time: 14, note: FUND*5+accx, duration: 5},
+        ]);
+
     part0.loop = true;
     part0.art(0);
 
-    let part1 = new Tone.Part((time, note) => {
-        fm1.triggerAttackRelease(note, "5", time);
-    }, [ [2.5, FUND*7 + accy], [8, FUND*6 + accy], [14, FUND*3 + accy]]);
+    let part1 = new Tone.Part((time, event) => {
+        fm1.triggerAttackRelease(event.note, event.duration, time);
+    }, [ 
+        {time: 2.5, note: FUND*7+accy, duration: 5},
+        {time: 8, note: FUND*6+accy, duration: 5},
+        {time: 14, note: FUND*3+accy, duration: 5},
+    ]);
     part1.loop = true;
     part1.start("0.2");
     
     let part2 = new Tone.Part((time, note) => {
         fm2.triggerAttackRelease(note, "5", time);
-    }, [ [3, FUND*1.125 - accy], [7, FUND*5/3 - accy], [20, FUND*5/4 - accy] ]);
+    }, [ 
+        {time: 3, note: FUND*7-accy, duration: 5},
+        {time: 8.5, note: FUND*9 - accy, duration: 5},
+        {time: 8.5, note: FUND*6 - accy, duration: 5},
+        {time: 8.5, note: FUND*8 - accy, duration: 5},
+        {time: 8.5, note: FUND*3 - accy, duration: 5},
+        {time: 8.5, note: FUND*6 - accy, duration: 5},
+        {time: 8.5, note: FUND*4 - accy, duration: 5},
+        [3, FUND*1.125 - accy], [7, FUND*5/3 - accy], [20, FUND*5/4 - accy] 
+    ]);
     part2.loop = true;
     part2.start("0.5");
 

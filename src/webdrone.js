@@ -1,3 +1,5 @@
+const { warn } = require("console");
+
 const gps = document.getElementById("getLocation");
 const gyro = document.getElementById("gyro_permission");
 const drone = document.getElementById("tone_start");
@@ -9,7 +11,7 @@ const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 const state = document.getElementById("status");
 
-let freq0 = 60;
+let freq0 = 120;
 let freq1 = freq0 * 1.125;
 let freq2 = freq1 * 1.25;
 

@@ -20,9 +20,9 @@ let vol = new Tone.Volume(1).toDestination();
 let verb = new Tone.Reverb(2).chain(vol);
 
 // Gain:
-let g0 = new Tone.Gain().chain(verb);
-let g1 = new Tone.Gain().chain(verb);
-let g2 = new Tone.Gain().chain(verb);
+let g0 = new Tone.Gain(0).chain(verb);
+let g1 = new Tone.Gain(0).chain(verb);
+let g2 = new Tone.Gain(0).chain(verb);
 
 // Synth 1, 2, 3 -> Reverb
 let fm0 = new Tone.FMSynth().chain(g0);

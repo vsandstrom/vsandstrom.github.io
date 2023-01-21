@@ -8,15 +8,19 @@ let freq0 = 120;
 let freq1 = freq0 * 1.125;
 let freq2 = freq1 * 1.25;
 
-let vol = new Tone.Volume(1) .toDestination();
+// Main out
+let vol = new Tone.Volume(1).toDestination();
+
 //     .chain(pan0);
 // let vol1 = new Tone.Volume(1)
 //     .chain(pan1);
 // let vol2 = new Tone.Volume(1)
 //     .chain(pan2);
 
+// Reverb -> Main out
 let verb = new Tone.Reverb(2).chain(vol);
 
+// Synth 1, 2, 3 -> Reverb
 let fm0 = new Tone.FMSynth().chain(verb);
 let fm1 = new Tone.FMSynth().chain(verb);
 let fm2 = new Tone.FMSynth().chain(verb);

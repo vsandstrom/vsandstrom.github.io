@@ -20,14 +20,14 @@ let vol = new Tone.Volume(1).toDestination();
 let verb = new Tone.Reverb(2).chain(vol);
 
 // Gain:
-let g0 = new Tone.Gain(0).chain(verb);
-let g1 = new Tone.Gain(0).chain(verb);
-let g2 = new Tone.Gain(0).chain(verb);
+// let g0 = new Tone.Gain(0).chain(verb);
+// let g1 = new Tone.Gain(0).chain(verb);
+// let g2 = new Tone.Gain(0).chain(verb);
 
 // Synth 1, 2, 3 -> Reverb
-let fm0 = new Tone.FMSynth().chain(g0);
-let fm1 = new Tone.FMSynth().chain(g1);
-let fm2 = new Tone.FMSynth().chain(g2);
+let fm0 = new Tone.FMSynth().chain(verb);
+let fm1 = new Tone.FMSynth().chain(verb);
+let fm2 = new Tone.FMSynth().chain(verb);
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
@@ -51,9 +51,9 @@ const handleOrientation = (e) => {
     fm1.harmonicity.value += orix;
     fm2.harmonicity.value += oriy;
 
-    g0.gain = oriy * inc;
-    g1.gain = oriy * inc;
-    g2.gain = oriy * inc;
+    // g0.gain = oriy * inc;
+    // g1.gain = oriy * inc;
+    // g2.gain = oriy * inc;
     verb.wet = orix * inc;
 
 

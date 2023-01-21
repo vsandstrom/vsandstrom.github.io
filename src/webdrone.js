@@ -25,21 +25,19 @@ let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
 
 const handleOrientation = (e) => {
-    // content.innerHTML = e;
-
     let inc = 1 / 360;
-
     orix = Math.abs(e.alpha) * inc;
     oriy = Math.abs(e.beta) * inc;
     oriz = Math.abs(e.gamma) * inc;
 
+    // Posts orientation values floored to integers
     orient.innerHTML = `
         x: ${Math.floor(e.alpha)}<br>
         y: ${Math.floor(e.beta)}<br>
         z: ${Math.floor(e.gamma)}
     `;
 
-
+    // Sets some synth parameters
     fm0.harmonicity.value =  5 - orix;
     fm1.harmonicity.value = 3 + orix;
     fm2.harmonicity.value = 3 + oriy;
@@ -54,12 +52,14 @@ const handleMotion = (e) => {
     accy = acc.y;
     accz = acc.z;
 
+    // Posts acceleration values floored to integers
     motion.innerHTML = `
         x: ${Math.floor(accx)}<br>
         y: ${Math.floor(accy)}<br>
         z: ${Math.floor(accz)}<br>
     `;
 
+    // Sets some other synth parameters
     fm0.frequency.value = freq0 + accx;
     fm1.frequency.value = freq1 + accy;
     fm2.frequency.value = freq2 - accz;
@@ -71,34 +71,20 @@ const getNextEvent = () => {
 }
 
 const toneStart = async () => {
+    // Tone must be requested from user for it to be allowed to play
     await Tone.start();
     fm0.triggerAttack(freq0, "0.5", 4);
     fm1.triggerAttack(freq1, "0.5", 4);
     fm2.triggerAttack(freq2, "0.5", 4);
 
-    // setInterval({
-    // 
-        // change `freq0`
-    //
-    // }, 14e3)
-    //
-    // setInterval({
-    //
-        // change `freq1`
-    //
-    // }, 14e3)
-    //
-    // setInterval({
-    //
-        // change `freq2`
-    //
-    // }, 14e3)
     Tone.Transport.start();
 
     drone.style.display = "none"
 
 
-    // Later project on creating a sequenced score
+    // A failed attempt at running a Tone.js loop as a sequencer
+    // VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+
     // let now = Tone.now();
     //
     // let loop = new Tone.Loop((time) => {
@@ -127,6 +113,7 @@ const toneStart = async () => {
     // Tone.Transport.start(now);
 };
 
+// Request callbacks
 const getOrientation = () => {
     if (DeviceMotionEvent.requestPermission === 'function') {
         DeviceMotionEvent.requestPermission().then((res) => {

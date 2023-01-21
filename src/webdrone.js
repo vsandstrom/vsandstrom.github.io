@@ -19,14 +19,20 @@ let vol = new Tone.Volume(1).toDestination();
 // Reverb -> Main out
 let verb = new Tone.Reverb(2).chain(vol);
 
+// Gain:
+let g0 = new Tone.Gain().chain(verb);
+let g1 = new Tone.Gain().chain(verb);
+let g2 = new Tone.Gain().chain(verb);
+
 // Synth 1, 2, 3 -> Reverb
-let fm0 = new Tone.FMSynth().chain(verb);
-let fm1 = new Tone.FMSynth().chain(verb);
-let fm2 = new Tone.FMSynth().chain(verb);
+let fm0 = new Tone.FMSynth().chain(g0);
+let fm1 = new Tone.FMSynth().chain(g1);
+let fm2 = new Tone.FMSynth().chain(g2);
 
 let accx, accy, accz = 0.0;
 let orix, oriy, oriz = 0.0;
 
+// Affect verb and modulation with orientation
 const handleOrientation = (e) => {
     let inc = 1 / 360;
     orix = Math.abs(e.alpha) * inc;
@@ -41,12 +47,19 @@ const handleOrientation = (e) => {
     `;
 
     // Sets some synth parameters
-    fm0.harmonicity.value =  5 - orix;
-    fm1.harmonicity.value = 3 + orix;
-    fm2.harmonicity.value = 3 + oriy;
+    fm0.harmonicity.value -= orix;
+    fm1.harmonicity.value += orix;
+    fm2.harmonicity.value += oriy;
+
+    g0.gain = oriy * inc;
+    g1.gain = oriy * inc;
+    g2.gain = oriy * inc;
+    verb.wet = orix * inc;
+
 
 };
 
+// Change chords on acceleration
 const handleMotion = (e) => {
     let acc = e.acceleration;
     let accGrav = e.accelerationIncludingGravity;

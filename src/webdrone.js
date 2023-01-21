@@ -1,6 +1,5 @@
 const gyro = document.getElementById("gyro_permission");
 const drone = document.getElementById("tone_start");
-// Use this variable! does not exist yet
 const motion = document.getElementById("motion");
 const orient = document.getElementById("orientation");
 
